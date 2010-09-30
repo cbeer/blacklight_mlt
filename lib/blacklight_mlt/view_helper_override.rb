@@ -9,7 +9,7 @@ module BlacklightMlt::ViewHelperOverride
 
   def solr_doc_params_with_mlt(id=nil, extra_controller_params={})
     result = solr_doc_params_without_mlt id, extra_controller_params
-    ({:mlt => true, 'mlt.fl' => mlt_config[:fields], 'mlt.mindf' => mlt_config[:mindf] || 1, 'mlt.mintf' => mlt_config[:mintf] || 1 , 'mlt.count' => mlt_config[:count] || 3 }).deep_merge result
+    ({:mlt => true, 'mlt.fl' => extra_controller_params['mlt.fl'] || mlt_config[:fields], 'mlt.mindf' => extra_controller_params['mlt.mindf'] ||  mlt_config[:mindf] || 1, 'mlt.mintf' => extra_controller_params['mlt.mintf'] || mlt_config[:mintf] || 1 , 'mlt.count' => extra_controller_params['mlt.count'] || mlt_config[:count] || 3 }).deep_merge result
   end
 
   def get_solr_response_for_doc_id_with_mlt(id=nil, extra_controller_params={})
