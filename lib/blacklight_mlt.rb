@@ -16,7 +16,7 @@ module BlacklightMlt
 	  include BlacklightMlt::SolrHelperOverride
 	end unless
          CatalogController.master_helper_module.include?( 
-            BlacklightMlt::ViewHelperOverride
+            BlacklightMlt::SolrHelperOverride
          )
         CatalogController.add_template_helper(
           MltHelper
