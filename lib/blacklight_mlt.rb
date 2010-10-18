@@ -12,9 +12,9 @@ module BlacklightMlt
     Dispatcher.to_prepare do
       
       unless omit_inject[:view_helpers]
-        CatalogController.add_template_helper(
-          BlacklightMlt::ViewHelperOverride
-        ) unless
+        CatalogController.class_eval do 
+	  include BlacklightMlt::SolrHelperOverride
+	end unless
          CatalogController.master_helper_module.include?( 
             BlacklightMlt::ViewHelperOverride
          )

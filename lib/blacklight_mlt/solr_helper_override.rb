@@ -1,5 +1,5 @@
 # Meant to be applied on top of Blacklight helpers
-module BlacklightMlt::ViewHelperOverride
+module BlacklightMlt::SolrHelperOverride
   def self.included(base)
      base.class_eval do
        alias_method :solr_doc_params_without_mlt, :solr_doc_params
