@@ -1,7 +1,7 @@
 # Meant to be applied on top of Blacklight helpers
 module BlacklightMlt::TemplateHelper
   def render_more_like_this
-
+    render :partial => 'blacklight_mlt/mlt', :collection => get_more_like_this
   end
   def get_more_like_this id=nil
     return [] unless @response['moreLikeThis']
