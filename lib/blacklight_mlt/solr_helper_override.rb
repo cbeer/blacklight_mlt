@@ -1,9 +1,11 @@
 # Meant to be applied on top of Blacklight helpers
 module BlacklightMlt::SolrHelperOverride
 
-  def solr_doc_params(id=nil, extra_controller_params={})
+  def get_solr_response_for_doc_id(id=nil, extra_controller_params={})
+
+    extra_controller_params = ({:mlt => true, 'mlt.fl' => extra_controller_params['mlt.fl'] || mlt_config[:fields], 'mlt.mindf' => extra_controller_params['mlt.mindf'] ||  mlt_config[:mindf] || 1, 'mlt.mintf' => extra_controller_params['mlt.mintf'] || mlt_config[:mintf] || 1 , 'mlt.count' => extra_controller_params['mlt.count'] || mlt_config[:count] || 3 }).merge(extra_controller_params)
+
     result = super(id, extra_controller_params)
-    ({:mlt => true, 'mlt.fl' => extra_controller_params['mlt.fl'] || mlt_config[:fields], 'mlt.mindf' => extra_controller_params['mlt.mindf'] ||  mlt_config[:mindf] || 1, 'mlt.mintf' => extra_controller_params['mlt.mintf'] || mlt_config[:mintf] || 1 , 'mlt.count' => extra_controller_params['mlt.count'] || mlt_config[:count] || 3 }).deep_merge result
   end
 
   def get_more_like_this_for_doc_id(id=nil, extra_controller_params={})
