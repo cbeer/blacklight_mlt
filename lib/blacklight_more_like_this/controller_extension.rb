@@ -12,6 +12,6 @@ module BlacklightMoreLikeThis::ControllerExtension
   # in this plugin that accesses Blacklight.config, single point
   # of contact. 
   def more_like_this_config   
-    Blacklight.config[:more_like_this] || {}
+    blacklight_config.more_like_this || {}
   end
 end
